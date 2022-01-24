@@ -1,0 +1,137 @@
+﻿@model E_LEARNING.Models.formation
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_client.cshtml";
+    var titre = ViewBag.categ;
+    var len = ViewBag.Length;
+    
+}
+
+
+
+
+
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="page-banner ovbl-dark row" style="background-image:url(/assets/images/banner/banner3.jpg);">
+        <div class="container">
+            <div class="page-banner-entry " >
+                
+                <h1 class="text-white" style="text-transform:capitalize">@Html.DisplayFor(model=>model.Name)</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container row d-flex justify-content-between">
+            <ul class="list-inline ">
+                <li><a asp-action="Index">Home</a></li>
+                <li style="text-transform:capitalize">Course @Html.DisplayFor(model => model.Name)</li>
+            </ul>
+            <ul class="topbar-right">
+                <li>@Html.DisplayFor(model => model.Date.Year)/@Html.DisplayFor(model => model.Date.Month)/@Html.DisplayFor(model => model.Date.Day)</li>
+                
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+    <!-- inner page banner END -->
+    <div class="content-block">
+        <!-- About Us -->
+        <div class="section-area section-sp1">
+            <div class="container">
+                <div class="row d-flex flex-row-reverse">
+                    <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                        <div class="course-detail-bx">
+                            <div class="course-price">
+                                <del>$0.00</del>
+                                <h4 class="price">Gratuit</h4>
+                            </div>
+                            <div class="course-buy-now text-center">
+                                <a href="#" class="btn radius-xl text-uppercase">Buy Now This Courses</a>
+                            </div>
+                            <div class="teacher-bx">
+                                <div class="teacher-info">
+                                    <div class="teacher-thumb">
+                                        <img src="/assets/images/testimonials/pic2.jpg" alt="" />
+                                    </div>
+                                    <div class="teacher-name">
+                                        <h5 style="font-size:14px;text-transform:capitalize">@Html.DisplayFor(m => m.Student.FirstName) @Html.DisplayFor(m => m.Student.LastName)</h5>
+                                        <span>Science Teacher</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cours-more-info">
+                                <div class="review">
+                                    <span>3 Review</span>
+                                    <ul class="cours-star">
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                                <div class="price categories">
+                                    <span>Categories</span>
+                                    <h5 class="text-center h6 cours-star " style="font-size:14px ;text-transform:capitalize">@Html.DisplayFor(model => model.categorie.Name)</h5>
+                                    
+                                </div>
+                            </div>
+                            <div class="course-info-list scroll-page">
+                                <ul class="navbar capitalize">
+                                    @foreach (var item in titre)
+                                    {
+                                        <li><a class="nav-link" style="text-transform:capitalize" href="#@item.Name"><i class="ti-zip"></i>@item.Name</a></li>
+                                    }
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 col-md-8 col-sm-12">
+                        <div class="courses-post">
+                            <div class="ttr-post-media media-effect">
+                                <a href="#"><img src="assets/images/blog/default/thum1.jpg" alt=""></a>
+                            </div>
+                            <div class="ttr-post-info">
+                                <div class="ttr-post-title ">
+                                    <h2 style="font-family: 'Roboto',sans-serif;text-transform:capitalize" class="post-title">@Html.DisplayFor(model => model.Name)</h2>
+                                     
+                                </div>
+                                <div class="ttr-post-text capitalize" style="font-family: 'open sans',sans-serif;">
+                                    <p > @Html.DisplayFor(model => model.Description)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="courese-overview" id="overview">
+                            
+                            <div class="row">
+                                <div class="col-md-12 col-lg-8">
+                                    @foreach (var item in titre)
+                                    {
+                                        <h5 class="m-b5 capitalize" style="font-family: 'Roboto',sans-serif;text-transform:capitalize" id="@item.Name">@item.Name</h5>
+
+                                        <img src="@FileLocation.RetriveFileFromFolder@item.ProfilePicture" class="img-thumbnail" height="100%" width="100%" asp-append-version="true" />
+
+                                        <p class="capitalize" style="font-family: 'open sans',sans-serif; margin-top:5px;">@item.Article_art</p>
+
+                                    }
+                                </div>
+                              
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact area END -->
+
+</div>

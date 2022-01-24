@@ -1,0 +1,111 @@
+﻿@model IEnumerable<E_LEARNING.Models.Titre>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+<main class="ttr-wrapper">
+    <div class="container-fluid">
+        <h1>Indexx</h1>
+
+        <div class="topbar-left">
+            <ul>
+
+                <li class="nav-item">
+                    <form method="post">
+                        <div class="input-group mb-3">
+                            @*<input name="categ" value="" type="text" hidden />*@
+                            <div class="input-group-append">
+                                <input type="submit" value="Tous" class="btn btn-success" />
+                            </div>
+                        </div>
+
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form method="post">
+                        <div class="input-group mb-3">
+                            <input name="categ" value="entite framwork" type="text" hidden />
+                            <div class="input-group-append">
+                                <input type="submit" value="Entite Framwork" class="btn btn-success" />
+                            </div>
+                        </div>
+
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <form method="post">
+                        <div class="input-group mb-3">
+                            <input name="it" value="ado dot net" type="text" hidden />
+                            <div class="input-group-append">
+                                <input type="submit" value="Ado.Net" class="btn btn-success" />
+                            </div>
+                        </div>
+
+                    </form>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <div class="topbar-right">
+            <p>
+                <a class="btn btn-success" style="background-color:green;color:white" asp-action="Create">Create New</a>
+            </p>
+        </div>
+
+            
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Date)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th> @Html.DisplayNameFor(model => model.ProfilePicture)</th>
+                        <th> @Html.DisplayNameFor(model => model.Article_art)</th>
+                        <th>@Html.DisplayNameFor(model => model.video_art)</th>
+                        <th>@Html.DisplayNameFor(model => model.formation)</th>
+                        <th>@Html.DisplayNameFor(model => model.formation.Student)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <img src="@FileLocation.RetriveFileFromFolder@item.ProfilePicture" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Article_art)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.video_art)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.formation.Name)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.formation.Student.FirstName)
+                                @Html.DisplayFor(modelItem => item.formation.Student.LastName)
+                            </td>
+                            <td class="w-25">
+                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i></a> |
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+</main>

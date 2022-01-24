@@ -1,0 +1,48 @@
+﻿@model IEnumerable<E_LEARNING.Models.Categorie>
+
+<table class="table table-bordered" id="customerTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfilePicture)
+            </th>
+
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() != 0)
+        {
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>
+                        @customer.Name
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@customer.Id">
+                            <img src="@FileLocation.RetriveFileFromFolder@customer.ProfilePicture" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
+                        </a>
+                    </td>
+
+                    <td text-right">
+                        <a class="btn btn-info text-white"> Edit</a>
+                        <form method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger text-white"> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+    <script>
+        $(document).ready(function () {
+            $("#customerTable").DataTable();
+        });
+    </script>
